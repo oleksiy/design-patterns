@@ -1,6 +1,6 @@
 package com.designpatterns.app.observer;
 
-import java.util.Observer;
+import com.designpatterns.app.observer.Observer;
 
 public interface Subject {
     public void registerObserver(Observer o);

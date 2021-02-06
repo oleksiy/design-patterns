@@ -1,7 +1,7 @@
 package com.designpatterns.app.observer;
 
 import java.util.ArrayList;
-import java.util.Observer;
+
 
 public class WeatherData implements Subject {
 
