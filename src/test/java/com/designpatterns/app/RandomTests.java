@@ -2,7 +2,6 @@ package com.designpatterns.app;
 
 import com.designpatterns.app.model.Employee;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.junit.jupiter.api.Test;
 
 
@@ -11,7 +10,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @Slf4j
-public class StreamsTest {
+public class RandomTests {
 
     @Test
     public void testStreams() {
