@@ -8,10 +8,13 @@ import java.util.HashMap;
 
 @Getter
 @Setter
-public class Vertex extends Node implements Comparable{
+public class Vertex extends Node implements Comparable {
+    
+    private final boolean visited;
 
     public Vertex(int x) {
         super(x);
+        visited = false;
     }
 
     public static Vertex createFrom(int value) {
