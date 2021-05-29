@@ -4,6 +4,7 @@ import com.designpatterns.app.composition.FlyWithWings;
 import com.designpatterns.app.composition.ModelDuck;
 import com.designpatterns.app.datastructures.BinaryTree;
 import com.designpatterns.app.model.Node;
+import com.designpatterns.app.model.TreeNode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,12 +32,12 @@ public class MainController {
     @GetMapping(path = "/binaryTree")
     public String binaryTree(Model model) {
         BinaryTree tree = new BinaryTree();
-        tree.insertNode(new Node(10));
-        tree.insertNode(new Node(11));
-        tree.insertNode(new Node(7));
-        tree.insertNode(new Node(9));
-        tree.insertNode(new Node(15));
-        tree.insertNode(new Node(8));
+        tree.insertNode(new TreeNode(10));
+        tree.insertNode(new TreeNode(11));
+        tree.insertNode(new TreeNode(7));
+        tree.insertNode(new TreeNode(9));
+        tree.insertNode(new TreeNode(15));
+        tree.insertNode(new TreeNode(8));
         tree.inOrderTraversal(tree.getRoot());
         log.info("This tree has a height of {}",tree.getHeight(tree.getRoot()));
         model.addAttribute("message", "Binary Tree Endpoint");

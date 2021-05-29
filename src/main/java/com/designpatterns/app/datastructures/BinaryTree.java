@@ -1,6 +1,6 @@
 package com.designpatterns.app.datastructures;
 
-import com.designpatterns.app.model.Node;
+import com.designpatterns.app.model.TreeNode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,10 +14,10 @@ import java.util.Queue;
 @Getter
 @NoArgsConstructor
 public class BinaryTree {
-    private Node root;
+    private TreeNode root;
 
     //left, root, right
-    public void inOrderTraversal(Node start) {
+    public void inOrderTraversal(TreeNode start) {
         if (start == null) {
             return;
         }
@@ -28,25 +28,25 @@ public class BinaryTree {
     }
 
     //root, left, right
-    public void preOrderTraversal(Node start) {
+    public void preOrderTraversal(TreeNode start) {
         if (start == null) {
             return;
         }
         log.info("preorder: {}", start.getData());
-        inOrderTraversal(start.getLeft());
-        inOrderTraversal(start.getRight());
+        preOrderTraversal(start.getLeft());
+        preOrderTraversal(start.getRight());
     }
 
-    public boolean insertNode(Node n) {
-        Node current;
+    public boolean insertNode(TreeNode n) {
+        TreeNode current;
         if (root == null || root.getData() == 0) {
-            root = new Node();
+            root = new TreeNode();
             root.setData(n.getData());
             root.setLeft(null);
             root.setRight(null);
             return true;
         }
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
@@ -69,7 +69,7 @@ public class BinaryTree {
         return true;
     }
 
-    public int getHeight(Node root) {
+    public int getHeight(TreeNode root) {
         if(root == null) {
             return 0;
         }
@@ -77,5 +77,4 @@ public class BinaryTree {
         int rightHeight = getHeight(root.getRight());
         return Math.max(leftHeight, rightHeight) + 1;
     }
-
 }
