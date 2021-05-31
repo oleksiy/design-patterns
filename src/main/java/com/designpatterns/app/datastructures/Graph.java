@@ -9,7 +9,7 @@ import java.util.*;
 @Getter
 @Slf4j
 public class Graph {
-    private final HashMap<Vertex, Set<Vertex>> adjacencyList;
+    private final HashMap<Integer, Set<Vertex>> adjacencyList;
     private int[][] adjacencyMatrix;
 
     public Graph() {
@@ -20,7 +20,7 @@ public class Graph {
         this.adjacencyList = new HashMap<>();
         this.adjacencyMatrix = new int[vertices.size()][vertices.size()];
         for(Vertex v: vertices) {
-            adjacencyList.put(v, new HashSet<>());
+            adjacencyList.put(v.getData(), new HashSet<>());
         }
     }
 
@@ -30,20 +30,47 @@ public class Graph {
     }
 
     public void addAllEdgesForVertexBiDi(Vertex u, List<Vertex> v) {
-        adjacencyList.get(u).addAll(v);
+        adjacencyList.get(u.getData()).addAll(v);
         for(Vertex x : v) {
-            adjacencyList.get(x).add(u);
+            adjacencyList.get(x.getData()).add(u);
         }
     }
 
+    public Set<Vertex> getAdjacentNodes(int x) {
+        return this.adjacencyList.get(x);
+    }
+
+    public Set<Integer> getAllVertices() {
+        return this.adjacencyList.keySet();
+    }
+
+    public List<Integer> DFS(int start){
+        log.info("Starting DFS from {}", start);
+        List<Integer> visited = new ArrayList<>();
+        runDFS(start, visited);
+        return visited;
+    }
+
+    private void runDFS(int vertex, List<Integer> visited){
+        log.info("Marking {} as visited.", vertex);
+        visited.add(vertex);
+        Set<Vertex> neighbors = this.getAdjacentNodes(vertex);
+        for(Vertex v : neighbors) {
+            if(!visited.contains(v.getData())) {
+                runDFS(v.getData(), visited);
+            }
+        }
+    }
+
+
     //assuming we're only dealing with numbers
-    public void setAdjacencyMatrix(HashMap<Vertex, Set<Vertex>> adjList) {
+    public void setAdjacencyMatrix(HashMap<Integer, Set<Vertex>> adjList) {
         if(adjList == null || adjList.isEmpty()) {
             throw new UnsupportedOperationException("cannot set matrix.");
         }
-        for(Vertex v : adjList.keySet()){
+        for(Integer v : adjList.keySet()){
             for(Vertex u : adjList.get(v)) {
-                this.adjacencyMatrix[v.getData()][u.getData()] = 1;
+                this.adjacencyMatrix[v][u.getData()] = 1;
             }
         }
     }
@@ -52,8 +79,8 @@ public class Graph {
         StringBuffer sb = new StringBuffer();
         sb.append("\n--===Adjacency List===--");
         sb.append("\n");
-        for(Vertex x: adjacencyList.keySet()) {
-            sb.append("Vertex: " + x.getData() + " -> " + adjacencyList.get(x).toString());
+        for(int x: adjacencyList.keySet()) {
+            sb.append("Vertex: " + x + " -> " + adjacencyList.get(x).toString());
             sb.append("\n");
         }
         return sb.toString();
