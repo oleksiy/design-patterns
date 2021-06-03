@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 @AllArgsConstructor
@@ -23,18 +24,43 @@ public class BinaryTree {
         }
         //left first
         inOrderTraversal(start.getLeft());
+        //print root
         log.info("inorder: {}", start.getData());
+        //right last
         inOrderTraversal(start.getRight());
     }
 
+    //left, root, right
+    public void inOrderTraversal(TreeNode start, List<TreeNode> path) {
+        if(start == null) {
+            return;
+        }
+        inOrderTraversal(start.getLeft(), path);
+        path.add(start);
+        inOrderTraversal(start.getRight(), path);
+    }
+
+    //left, right, root
+    public void postOrderTraversal(TreeNode start, List<TreeNode> path) {
+        if(start == null){
+            return;
+        }
+        //left
+        postOrderTraversal(start.getLeft(), path);
+        //right
+        postOrderTraversal(start.getRight(), path);
+        //root
+        path.add(start);
+    }
+
     //root, left, right
-    public void preOrderTraversal(TreeNode start) {
+    public void preOrderTraversal(TreeNode start, List<TreeNode> path) {
         if (start == null) {
             return;
         }
-        log.info("preorder: {}", start.getData());
-        preOrderTraversal(start.getLeft());
-        preOrderTraversal(start.getRight());
+        path.add(start);
+        preOrderTraversal(start.getLeft(), path);
+        preOrderTraversal(start.getRight(), path);
     }
 
     public boolean insertNode(TreeNode n) {
@@ -70,6 +96,15 @@ public class BinaryTree {
     }
 
     public int getHeight(TreeNode root) {
+        if(root == null) {
+            return 0;
+        }
+        int leftHeight = getHeight(root.getLeft());
+        int rightHeight = getHeight(root.getRight());
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
+
+    public int getHeight() {
         if(root == null) {
             return 0;
         }

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Executable;
 import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -75,11 +76,26 @@ public class GraphTest {
         assertEquals(5, path.size());
     }
 
-    public void testTwoDimArrayList(){
-        ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
-        adj.add(new ArrayList<>());
-        Queue<Integer> q = new LinkedList<>();
+    @Test
+    public void testCollectionsSorting(){
+        int[] a = {100, 52, -1, 3, 8, 11};
+        Arrays.sort(a);
+        Map<String, Integer> map = new HashMap<>();
+        map.put("x", 5);
+        map.put("y", 3);
+        //System.out.println(map.get("x"));
+        log.info("Sorted collection: {}", Arrays.toString(a));
+        assertNotNull(a);
+    }
 
+    @Test
+    public void testStringOperations(){
+        String s = "a quick brown fox";
+        String[] splitString = s.split("\\s");
+        ArrayList<Integer> list = new ArrayList<>();
+        list.add(6);
+        log.info("{}",list.contains(6));
+        log.info("{}", Arrays.toString(splitString));
     }
 
     private Graph createASimpleGraph() {
