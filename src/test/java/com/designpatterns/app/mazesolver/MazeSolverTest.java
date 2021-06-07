@@ -37,4 +37,23 @@ public class MazeSolverTest {
         log.info("is it solvable {}", solvable);
         assertEquals(true, solvable);
     }
+
+    @Test
+    public void testReverseNumber() {
+        int x = 1534236469;
+        long y = 9646324351L;
+        int fullNumber = 0;
+        while(x != 0) {
+            int lastNumber = x % 10;
+            long overflowCheck = (long)fullNumber*10L + (long)lastNumber;
+            fullNumber *=10;
+            if(overflowCheck > Integer.MAX_VALUE || overflowCheck < Integer.MIN_VALUE){
+                log.info("Overflow detected");
+            }
+            fullNumber += lastNumber;
+            log.info("{}", lastNumber);
+            x /= 10;
+        }
+        log.info("Full Num {} max number {}",fullNumber, Integer.MAX_VALUE);
+    }
 }
