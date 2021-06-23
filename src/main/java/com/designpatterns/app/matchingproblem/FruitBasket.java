@@ -14,7 +14,7 @@ public class FruitBasket {
         this.cart = cart;
     }
 
-    public int isWinner(List<String> codes, List<String> cart) {
+    /*public int isWinner(List<String> codes, List<String> cart) {
         log.info("The keys are {}, \nand the cart is {}", codes, cart);
         int[] isMatch = new int[codes.size()];
         int startWindow = 0;
@@ -50,6 +50,10 @@ public class FruitBasket {
             }
         }
 
+        return 0;
+    }*/
+
+    public int isWinner(List<String> codes, List<String> shoppingCart) {
         return 0;
     }
 

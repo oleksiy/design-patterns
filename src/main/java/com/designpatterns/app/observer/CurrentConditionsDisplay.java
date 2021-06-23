@@ -6,11 +6,11 @@ import lombok.extern.slf4j.Slf4j;
 public class CurrentConditionsDisplay implements Observer, DisplayElement {
     private float temperature;
     private float humidity;
-    private Subject weatherData;
+    private WeatherData weatherData;
 
-    public CurrentConditionsDisplay(Subject weatherData) {
+    public CurrentConditionsDisplay(WeatherData weatherData) {
         this.weatherData = weatherData;
-        weatherData.registerObserver((Observer) this);
+        weatherData.registerObserver( this);
     }
 
     @Override
@@ -22,6 +22,6 @@ public class CurrentConditionsDisplay implements Observer, DisplayElement {
 
     @Override
     public void display() {
-        log.info("Current conditions: {}F degrees and humidity {}% humidity", temperature, humidity);
+        log.info("Current conditions: {}F degrees and {}% humidity", temperature, humidity);
     }
 }
