@@ -2,6 +2,10 @@ package com.designpatterns.app.controllers;
 
 import com.designpatterns.app.composition.FlyWithWings;
 import com.designpatterns.app.composition.ModelDuck;
+import com.designpatterns.app.creational.builder.Boeing747;
+import com.designpatterns.app.creational.builder.Boeing747Builder;
+import com.designpatterns.app.creational.builder.Director;
+import com.designpatterns.app.creational.builder.IAircraft;
 import com.designpatterns.app.datastructures.BinaryTree;
 import com.designpatterns.app.model.Node;
 import com.designpatterns.app.model.TreeNode;
@@ -42,5 +46,15 @@ public class MainController {
         log.info("This tree has a height of {}",tree.getHeight(tree.getRoot()));
         model.addAttribute("message", "Binary Tree Endpoint");
         return "binaryTree";
+    }
+
+    @GetMapping(path = "/builder-pattern")
+    public String builderPatternClient(Model model) {
+        Boeing747Builder builder = new Boeing747Builder();
+        Director director = new Director(builder);
+        director.construct(true);
+        model.addAttribute("message", "Builder pattern finished building.");
+        IAircraft boeing747 = builder.getResult();
+        return "main";
     }
 }
