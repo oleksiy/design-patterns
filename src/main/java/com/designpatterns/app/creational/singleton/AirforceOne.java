@@ -1,7 +1,7 @@
 package com.designpatterns.app.creational.singleton;
 
 public class AirforceOne {
-    //Only Instance
+    //Only Instance - not threadsafe
     private static AirforceOne onlyInstance;
 
     //Make constructor private, only accessible to members of the class
