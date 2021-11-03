@@ -1,19 +1,19 @@
 package com.designpatterns.app.creational.abstractfactory;
 
-public class F16Factory implements IAircraftFactory{
+public class Boeing747Factory implements IAircraftFactory {
 
     @Override
     public IEngine createEngine() {
-        return new F16Engine();
+        return new Boeing747Engine();
     }
 
     @Override
     public IWings createWings() {
-        return new F16Wings();
+        return new Boeing747Wings();
     }
 
     @Override
     public ICockpit createCockpit() {
-        return new F16Cockpit();
+        return new Boeing747Cockpit();
     }
 }
