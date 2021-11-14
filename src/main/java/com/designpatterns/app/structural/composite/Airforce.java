@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+//This is the composite class that takes advantage of the parts
 public class Airforce implements IAlliancePart {
     List<IAlliancePart> planes = new ArrayList<>();
 
