@@ -1,9 +1,11 @@
 package com.designpatterns.app.behavioral.observer;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.Collection;
 
-
+@Slf4j
 public class ControlTower implements ISubject {
 
     // The ControlTower maintains a list of
@@ -12,6 +14,15 @@ public class ControlTower implements ISubject {
     @Override
     public void addObserver(IObserver observer) {
         observers.add(observer);
+    }
+
+    public String listObservers() {
+        StringBuffer sb = new StringBuffer();
+        observers.forEach(o ->{
+            log.info("Listing Observer -> {}", o);
+            sb.append(o.getClass());
+        });
+        return sb.toString();
     }
 
     @Override
