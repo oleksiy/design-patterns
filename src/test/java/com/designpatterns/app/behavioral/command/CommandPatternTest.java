@@ -1,9 +1,5 @@
-package com.designpatterns.app.behavioral;
+package com.designpatterns.app.behavioral.command;
 
-import com.designpatterns.app.behavioral.command.InstrumentPanel;
-import com.designpatterns.app.behavioral.command.LandingGear;
-import com.designpatterns.app.behavioral.command.LandingGearDownCommand;
-import com.designpatterns.app.behavioral.command.LandingGearUpCommand;
 import org.junit.jupiter.api.Test;
 
 public class CommandPatternTest {
