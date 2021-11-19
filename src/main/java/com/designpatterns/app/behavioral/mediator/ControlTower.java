@@ -1,14 +1,18 @@
 package com.designpatterns.app.behavioral.mediator;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 public class ControlTower {
     List<IAircraft> queuedForLanding = new ArrayList<>();
 
     // An aircraft just notifies the control tower that it wants to
     // land and doesn't coordinate with other aircraft
     synchronized public void requestToLand(IAircraft aircraft) {
+        log.info("adding {} to queue", aircraft);
         queuedForLanding.add(aircraft);
     }
 
@@ -26,6 +30,7 @@ public class ControlTower {
             }
             // We have only one runway available so only allow a single
             // aircraft to land.
+            log.info("landing aircraft");
             aircraft.land();
         }
     }
