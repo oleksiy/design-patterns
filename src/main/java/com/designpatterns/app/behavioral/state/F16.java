@@ -12,6 +12,14 @@ public class F16 implements IAircraft {
     private AirborneState airborneState = new AirborneState(this);
     IPilotActions state;
 
+    public F16(IPilotActions state) {
+        this.state = state;
+    }
+
+    public F16() {
+        this.state = parkedState;
+    }
+
     @Override
     public void fly() {
         log.info("Flying F16");
@@ -28,6 +36,10 @@ public class F16 implements IAircraft {
 
     void fliesPlane() {
         state.pilotFlies(this);
+    }
+
+    void ejectsPlane(){
+        state.pilotEjects(this);
     }
 
     void landsPlane() {
